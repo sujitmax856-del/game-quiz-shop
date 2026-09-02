@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Quiz Shop - Daily Rewards</title>
+    <title>Game Quiz Shop</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
         * {
@@ -19,145 +21,264 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
         }
 
         .container {
             width: 90%;
-            max-width: 500px;
+            max-width: 420px;
             background: #1e293b;
-            padding: 35px 25px;
+            padding: 30px;
             border-radius: 20px;
         }
 
         h1 {
+            text-align: center;
             margin-bottom: 10px;
-            font-size: 30px;
         }
 
         .subtitle {
-            color: #cbd5e1;
+            text-align: center;
+            color: #94a3b8;
             margin-bottom: 25px;
         }
 
-        .coins {
-            background: #334155;
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        .reward-box {
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 15px;
+            border: 1px solid #475569;
+            border-radius: 10px;
             background: #0f172a;
-            padding: 25px;
-            border-radius: 15px;
-        }
-
-        .reward {
-            font-size: 42px;
-            margin: 10px 0;
+            color: white;
+            font-size: 16px;
         }
 
         button {
             width: 100%;
-            padding: 15px;
+            padding: 14px;
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             background: #22c55e;
             color: white;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
+            margin-bottom: 10px;
         }
 
-        button:disabled {
-            background: #64748b;
-            cursor: not-allowed;
+        button:hover {
+            background: #16a34a;
         }
 
-        #message {
-            margin-top: 20px;
+        .secondary {
+            background: #334155;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 15px;
             color: #86efac;
-            font-weight: bold;
+        }
+
+        .error {
+            color: #f87171;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .user-box {
+            text-align: center;
+        }
+
+        .coins {
+            font-size: 24px;
+            margin: 20px 0;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
+<div class="container">
+
+    <div id="authSection">
 
         <h1>🎮 Game Quiz Shop</h1>
 
-        <p class="subtitle">Daily Rewards</p>
+        <p class="subtitle">Create your account or login</p>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Email address"
+        >
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Password"
+        >
+
+        <button onclick="register()">
+            Create Account
+        </button>
+
+        <button class="secondary" onclick="login()">
+            Login
+        </button>
+
+        <div id="message" class="message"></div>
+
+    </div>
+
+    <div id="userSection" class="user-box hidden">
+
+        <h1>🎮 Welcome!</h1>
+
+        <p>You are successfully logged in.</p>
 
         <div class="coins">
             🪙 Coins: <span id="coins">0</span>
         </div>
 
-        <div class="reward-box">
-
-            <div class="reward">🎁</div>
-
-            <h2>Daily Reward</h2>
-
-            <p>Claim your daily reward and receive 10 to 15 coins!</p>
-
-            <button id="claimButton" onclick="claimReward()">
-                Claim Reward
-            </button>
-
-            <div id="message"></div>
-
-        </div>
+        <button onclick="logout()">
+            Logout
+        </button>
 
     </div>
 
-    <script>
-        let coins = Number(localStorage.getItem("coins")) || 0;
+</div>
 
-        const coinsElement = document.getElementById("coins");
-        const claimButton = document.getElementById("claimButton");
-        const message = document.getElementById("message");
+<script>
 
-        coinsElement.textContent = coins;
+const SUPABASE_URL = "https://pkcsbazsqkhoxqfadvkp.supabase.co";
 
-        function claimReward() {
-            const today = new Date().toDateString();
-            const lastClaim = localStorage.getItem("lastClaim");
+const SUPABASE_KEY = "sb_publishable_wNkohhRTugNOEHChrPEOWQ_OVqRFL6y";
 
-            if (lastClaim === today) {
-                message.textContent = "You have already claimed today's reward!";
-                claimButton.disabled = true;
-                return;
-            }
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
-            // Random reward between 10 and 15 coins
-            const reward = Math.floor(Math.random() * 6) + 10;
+async function register() {
 
-            coins += reward;
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
 
-            localStorage.setItem("coins", coins);
-            localStorage.setItem("lastClaim", today);
+    const message = document.getElementById("message");
 
-            coinsElement.textContent = coins;
+    message.className = "message";
 
-            message.textContent =
-                "🎉 Congratulations! You received " + reward + " coins.";
+    if (!email || !password) {
+        message.textContent = "Please enter your email and password.";
+        message.className = "message error";
+        return;
+    }
 
-            claimButton.disabled = true;
+    if (password.length < 6) {
+        message.textContent = "Password must be at least 6 characters.";
+        message.className = "message error";
+        return;
+    }
+
+    const { data, error } = await supabaseClient.auth.signUp({
+        email: email,
+        password: password
+    });
+
+    if (error) {
+        message.textContent = error.message;
+        message.className = "message error";
+        return;
+    }
+
+    if (data.user && !data.session) {
+        message.textContent =
+            "Account created. Please check your email to confirm your account.";
+        return;
+    }
+
+    message.textContent = "Account created successfully!";
+
+    showUser(data.user);
+}
+
+async function login() {
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    const message = document.getElementById("message");
+
+    message.className = "message";
+
+    if (!email || !password) {
+        message.textContent = "Please enter your email and password.";
+        message.className = "message error";
+        return;
+    }
+
+    const { data, error } =
+        await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+    if (error) {
+        message.textContent = error.message;
+        message.className = "message error";
+        return;
+    }
+
+    showUser(data.user);
+}
+
+async function logout() {
+
+    await supabaseClient.auth.signOut();
+
+    document.getElementById("authSection")
+        .classList.remove("hidden");
+
+    document.getElementById("userSection")
+        .classList.add("hidden");
+
+    document.getElementById("message").textContent = "";
+}
+
+function showUser(user) {
+
+    document.getElementById("authSection")
+        .classList.add("hidden");
+
+    document.getElementById("userSection")
+        .classList.remove("hidden");
+}
+
+async function checkUser() {
+
+    const { data } =
+        await supabaseClient.auth.getSession();
+
+    if (data.session) {
+        showUser(data.session.user);
+    }
+}
+
+supabaseClient.auth.onAuthStateChange(
+    (event, session) => {
+
+        if (session) {
+            showUser(session.user);
         }
+    }
+);
 
-        const today = new Date().toDateString();
-        const lastClaim = localStorage.getItem("lastClaim");
+checkUser();
 
-        if (lastClaim === today) {
-            claimButton.disabled = true;
-            message.textContent = "You have already claimed today's reward!";
-        }
-    </script>
+</script>
 
 </body>
 </html>
