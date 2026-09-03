@@ -14,374 +14,1260 @@
 
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0f172a;
-            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 480px;
             min-height: 100vh;
-            padding: 20px;
+            margin: auto;
+            background: #ffffff;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        .container {
+        .hidden {
+            display: none !important;
+        }
+
+        /* AUTH */
+
+        .auth-screen {
+            min-height: 100vh;
+            padding: 45px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #f3f6ff, #ffffff);
+        }
+
+        .auth-box {
             width: 100%;
-            max-width: 500px;
-            margin: 40px auto;
         }
 
-        .card {
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-        }
-
-        h1 {
+        .logo {
             text-align: center;
-            margin: 0 0 10px;
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .auth-title {
+            text-align: center;
             font-size: 30px;
+            font-weight: 800;
+            margin: 0;
         }
 
-        .subtitle {
+        .auth-subtitle {
             text-align: center;
-            color: #94a3b8;
-            margin-bottom: 25px;
+            color: #7d8798;
+            margin: 10px 0 30px;
         }
 
-        input {
+        .input {
             width: 100%;
-            padding: 14px;
+            border: 1px solid #dce2ec;
+            border-radius: 14px;
+            padding: 15px;
             margin-bottom: 12px;
-            border: 1px solid #475569;
-            border-radius: 10px;
-            background: #0f172a;
-            color: white;
             font-size: 15px;
             outline: none;
         }
 
-        input:focus {
-            border-color: #6366f1;
+        .input:focus {
+            border-color: #5b4df6;
         }
 
-        button {
+        .primary-button {
             width: 100%;
-            padding: 14px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 10px;
-            background: #6366f1;
+            border: 0;
+            border-radius: 14px;
+            padding: 15px;
+            background: #5b4df6;
             color: white;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: 700;
             cursor: pointer;
+            margin-top: 8px;
         }
 
-        button:hover {
-            opacity: 0.9;
-        }
-
-        button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .secondary {
-            background: #334155;
-        }
-
-        .logout {
-            background: #ef4444;
-        }
-
-        .reward {
-            background: #16a34a;
-        }
-
-        .coins {
-            background: #0f172a;
-            border: 1px solid #334155;
+        .secondary-button {
+            width: 100%;
+            border: 1px solid #dce2ec;
             border-radius: 14px;
-            padding: 18px;
-            text-align: center;
-            font-size: 22px;
-            font-weight: bold;
-            margin: 20px 0;
-        }
-
-        .user-email {
-            text-align: center;
-            color: #94a3b8;
-            font-size: 14px;
-            word-break: break-word;
+            padding: 15px;
+            background: white;
+            color: #30394b;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
         }
 
         .message {
-            margin-top: 15px;
             text-align: center;
             min-height: 20px;
+            margin-top: 14px;
             font-size: 14px;
         }
 
-        .hidden {
-            display: none;
+        /* APP HEADER */
+
+        .top-header {
+            padding: 22px 20px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
         }
 
-        .feature-title {
-            text-align: center;
+        .hello {
+            color: #8992a3;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .username {
             font-size: 22px;
-            margin: 30px 0 15px;
+            font-weight: 800;
+        }
+
+        .coin-badge {
+            background: #fff7df;
+            border: 1px solid #ffe7a4;
+            border-radius: 14px;
+            padding: 10px 14px;
+            color: #9b6800;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        /* PAGES */
+
+        .page {
+            min-height: calc(100vh - 82px);
+            padding-bottom: 100px;
+        }
+
+        .page-content {
+            padding: 0 18px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin: 20px 0 12px;
+        }
+
+        /* BALANCE */
+
+        .balance-card {
+            margin: 0 18px;
+            padding: 22px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, #6658f6, #4b3be4);
+            color: white;
+            box-shadow: 0 12px 30px rgba(91, 77, 246, 0.25);
+        }
+
+        .balance-label {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+
+        .balance-value {
+            font-size: 36px;
+            font-weight: 900;
+            margin: 7px 0 18px;
+        }
+
+        .balance-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .balance-action {
+            flex: 1;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.14);
+            color: white;
+            border-radius: 12px;
+            padding: 11px 5px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* QUICK ACTIONS */
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .quick-card {
+            border: 1px solid #edf0f5;
+            border-radius: 18px;
+            padding: 18px;
+            background: white;
+            box-shadow: 0 5px 18px rgba(22, 32, 51, 0.05);
+            cursor: pointer;
+        }
+
+        .quick-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 12px;
+            background: #f0efff;
+        }
+
+        .quick-title {
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .quick-description {
+            color: #8a93a4;
+            font-size: 12px;
+            margin-top: 5px;
+            line-height: 1.4;
+        }
+
+        /* OFFER CARDS */
+
+        .offer-card {
+            width: 100%;
+            border: 0;
+            border-radius: 20px;
+            padding: 20px;
+            color: white;
+            text-align: left;
+            cursor: pointer;
+            margin-bottom: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-offer {
+            background: linear-gradient(135deg, #ff5d70, #ff3150);
+        }
+
+        .game-offer {
+            background: linear-gradient(135deg, #10a97a, #087c61);
+        }
+
+        .offer-label {
+            font-size: 12px;
+            font-weight: 700;
+            opacity: 0.85;
+            text-transform: uppercase;
+        }
+
+        .offer-title {
+            font-size: 24px;
+            font-weight: 900;
+            margin: 6px 0;
+        }
+
+        .offer-description {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .offer-arrow {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+        }
+
+        /* SUB PAGES */
+
+        .sub-page-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 18px;
+            border-bottom: 1px solid #eef1f5;
+        }
+
+        .back-button {
+            border: 0;
+            background: #f2f4f8;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .sub-page-title {
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        /* QUIZ */
+
+        .game-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .game-card {
+            border: 1px solid #edf0f5;
+            background: white;
+            border-radius: 18px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            box-shadow: 0 5px 18px rgba(22, 32, 51, 0.05);
+        }
+
+        .game-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            background: #f0f2f8;
+            flex-shrink: 0;
+        }
+
+        .game-name {
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .game-info {
+            color: #8a93a4;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* SPIN */
+
+        .spin-card {
+            margin-top: 10px;
+            background: #fff8e7;
+            border: 1px solid #ffe9ae;
+            border-radius: 20px;
+            padding: 22px;
+            text-align: center;
         }
 
         .wheel-container {
-            position: relative;
-            width: 300px;
-            height: 300px;
+            width: 280px;
+            height: 280px;
             margin: 20px auto;
+            position: relative;
         }
 
         .wheel {
-            width: 300px;
-            height: 300px;
+            width: 280px;
+            height: 280px;
             border-radius: 50%;
-            border: 8px solid #f8fafc;
+            border: 8px solid white;
             background: conic-gradient(
-                #ef4444 0deg 60deg,
-                #f59e0b 60deg 120deg,
-                #22c55e 120deg 180deg,
-                #06b6d4 180deg 240deg,
-                #3b82f6 240deg 300deg,
-                #8b5cf6 300deg 360deg
+                #ff5d70 0deg 60deg,
+                #ffb02e 60deg 120deg,
+                #24bd88 120deg 180deg,
+                #28a9df 180deg 240deg,
+                #6861ff 240deg 300deg,
+                #a34fff 300deg 360deg
             );
-            position: relative;
             transition: transform 4s cubic-bezier(0.15, 0.85, 0.25, 1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .wheel-label {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            width: 70px;
-            height: 30px;
-            margin-left: -35px;
-            margin-top: -15px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            text-shadow: 1px 1px 3px black;
-        }
-
-        .label-5 {
-            transform: rotate(30deg) translateY(-105px) rotate(-30deg);
-        }
-
-        .label-10 {
-            transform: rotate(90deg) translateY(-105px) rotate(-90deg);
-        }
-
-        .label-15 {
-            transform: rotate(150deg) translateY(-105px) rotate(-150deg);
-        }
-
-        .label-20 {
-            transform: rotate(210deg) translateY(-105px) rotate(-210deg);
-        }
-
-        .label-25 {
-            transform: rotate(270deg) translateY(-105px) rotate(-270deg);
-        }
-
-        .label-50 {
-            transform: rotate(330deg) translateY(-105px) rotate(-330deg);
-        }
-
-        .wheel-pointer {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-top: 30px solid white;
-            z-index: 5;
-            filter: drop-shadow(0 2px 3px black);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+            position: relative;
         }
 
         .wheel-center {
             position: absolute;
-            width: 65px;
-            height: 65px;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            background: #0f172a;
-            border: 5px solid white;
+            width: 62px;
+            height: 62px;
             border-radius: 50%;
-            z-index: 4;
+            background: white;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 25px;
+            z-index: 3;
         }
 
-        .spin-button {
-            background: #f59e0b;
-            color: #111827;
-            font-size: 18px;
+        .wheel-pointer {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            width: 0;
+            height: 0;
+            border-left: 14px solid transparent;
+            border-right: 14px solid transparent;
+            border-top: 28px solid #172033;
         }
 
-        .spin-button:hover {
-            background: #d97706;
-        }
-
-        .info {
+        .wheel-text {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 65px;
+            margin-left: -32px;
+            margin-top: -10px;
             text-align: center;
-            color: #94a3b8;
-            font-size: 14px;
+            color: white;
+            font-size: 16px;
+            font-weight: 900;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+        }
+
+        /* WALLET */
+
+        .wallet-empty {
+            text-align: center;
+            padding: 50px 20px;
+            color: #8992a3;
+        }
+
+        .wallet-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .transaction-card {
+            border: 1px solid #edf0f5;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* PROFILE */
+
+        .profile-card {
+            text-align: center;
+            padding: 25px 0;
+        }
+
+        .profile-avatar {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            margin: auto;
+            background: #eeeaff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+        }
+
+        .profile-email {
+            color: #8992a3;
             margin-top: 10px;
+            word-break: break-word;
+        }
+
+        .profile-option {
+            width: 100%;
+            padding: 17px;
+            border: 1px solid #edf0f5;
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            text-align: left;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .danger {
+            color: #ef4444;
+        }
+
+        /* BOTTOM NAV */
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 480px;
+            height: 78px;
+            background: rgba(255,255,255,0.97);
+            border-top: 1px solid #e8ebf1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            z-index: 20;
+        }
+
+        .nav-button {
+            border: 0;
+            background: transparent;
+            color: #9098a8;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .nav-icon {
+            display: block;
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .nav-button.active {
+            color: #5b4df6;
+        }
+
+        @media (min-width: 481px) {
+            body {
+                background: #e9edf5;
+            }
+
+            .app {
+                box-shadow: 0 0 50px rgba(0,0,0,0.08);
+            }
+
+            .bottom-nav {
+                left: 50%;
+                transform: translateX(-50%);
+            }
         }
     </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="app">
 
-    <div class="card">
+    <!-- AUTH SCREEN -->
 
-        <div id="authSection">
+    <section id="authScreen" class="auth-screen">
 
-            <h1>🎮 Game Quiz Shop</h1>
+        <div class="auth-box">
 
-            <p class="subtitle">
-                Create your account or login
+            <div class="logo">🎮</div>
+
+            <h1 class="auth-title">
+                Game Quiz Shop
+            </h1>
+
+            <p class="auth-subtitle">
+                Play games. Take quizzes. Earn coins.
             </p>
 
             <input
-                type="email"
                 id="email"
+                class="input"
+                type="email"
                 placeholder="Email address"
             >
 
             <input
-                type="password"
                 id="password"
+                class="input"
+                type="password"
                 placeholder="Password"
             >
 
-            <button onclick="register()">
+            <button
+                class="primary-button"
+                onclick="register()"
+            >
                 Create Account
             </button>
 
-            <button class="secondary" onclick="login()">
+            <button
+                class="secondary-button"
+                onclick="login()"
+            >
                 Login
             </button>
 
-            <div id="message" class="message"></div>
+            <div
+                id="message"
+                class="message"
+            ></div>
 
         </div>
 
+    </section>
 
-        <div id="userSection" class="hidden">
 
-            <h1>🎮 Welcome!</h1>
+    <!-- MAIN APP -->
 
-            <p class="subtitle">
-                You are successfully logged in.
-            </p>
+    <section id="appScreen" class="hidden">
 
-            <p id="userEmail" class="user-email"></p>
+        <header class="top-header">
 
-            <div class="coins">
-                🪙 Coins: <span id="coins">0</span>
+            <div>
+                <div class="hello">
+                    Welcome back
+                </div>
+
+                <div
+                    id="headerUsername"
+                    class="username"
+                >
+                    Gamer
+                </div>
+            </div>
+
+            <div class="coin-badge">
+                🪙 <span id="headerCoins">0</span>
+            </div>
+
+        </header>
+
+
+        <!-- HOME PAGE -->
+
+        <main
+            id="homePage"
+            class="page"
+        >
+
+            <div class="balance-card">
+
+                <div class="balance-label">
+                    Available Balance
+                </div>
+
+                <div class="balance-value">
+                    🪙 <span id="homeCoins">0</span>
+                </div>
+
+                <div class="balance-row">
+
+                    <button
+                        class="balance-action"
+                        onclick="openPage('walletPage')"
+                    >
+                        💰 Wallet
+                    </button>
+
+                    <button
+                        class="balance-action"
+                        onclick="openRefer()"
+                    >
+                        👥 Refer
+                    </button>
+
+                </div>
+
             </div>
 
 
-            <h2 class="feature-title">
-                🎁 Daily Reward
-            </h2>
+            <div class="page-content">
 
-            <button
-                id="dailyRewardButton"
-                class="reward"
-                onclick="claimDailyReward()"
-            >
-                🎁 Claim Daily Reward
-            </button>
+                <div class="section-title">
+                    Quick Actions
+                </div>
 
-            <div id="rewardMessage" class="message"></div>
+                <div class="quick-grid">
 
+                    <div
+                        class="quick-card"
+                        onclick="claimDailyReward()"
+                    >
+                        <div class="quick-icon">
+                            🎁
+                        </div>
 
-            <h2 class="feature-title">
-                🎡 Spin Wheel
-            </h2>
+                        <div class="quick-title">
+                            Daily Win
+                        </div>
 
-            <div class="wheel-container">
-
-                <div class="wheel-pointer"></div>
-
-                <div id="wheel" class="wheel">
-
-                    <div class="wheel-label label-5">
-                        5 🪙
+                        <div class="quick-description">
+                            Claim your daily 10–15 coins.
+                        </div>
                     </div>
 
-                    <div class="wheel-label label-10">
-                        10 🪙
+
+                    <div
+                        class="quick-card"
+                        onclick="openPage('spinPage')"
+                    >
+                        <div class="quick-icon">
+                            🎡
+                        </div>
+
+                        <div class="quick-title">
+                            Spin Wheel
+                        </div>
+
+                        <div class="quick-description">
+                            Get your free daily spin.
+                        </div>
                     </div>
 
-                    <div class="wheel-label label-15">
-                        15 🪙
+                </div>
+
+
+                <div class="section-title">
+                    Special Offers
+                </div>
+
+
+                <button
+                    class="offer-card quiz-offer"
+                    onclick="openPage('quizPage')"
+                >
+
+                    <div class="offer-label">
+                        Super Offer
                     </div>
 
-                    <div class="wheel-label label-20">
-                        20 🪙
+                    <div class="offer-title">
+                        Super Quiz
                     </div>
 
-                    <div class="wheel-label label-25">
-                        25 🪙
+                    <div class="offer-description">
+                        Test your gaming knowledge and earn coins.
                     </div>
 
-                    <div class="wheel-label label-50">
-                        50 🪙
+                    <div class="offer-arrow">
+                        →
                     </div>
 
-                    <div class="wheel-center">
-                        🎡
+                </button>
+
+
+                <button
+                    class="offer-card game-offer"
+                    onclick="openPage('gamesPage')"
+                >
+
+                    <div class="offer-label">
+                        Mega Offer
+                    </div>
+
+                    <div class="offer-title">
+                        Mega Game
+                    </div>
+
+                    <div class="offer-description">
+                        Play simple games and enjoy more rewards.
+                    </div>
+
+                    <div class="offer-arrow">
+                        →
+                    </div>
+
+                </button>
+
+            </div>
+
+        </main>
+
+
+        <!-- SUPER QUIZ PAGE -->
+
+        <main
+            id="quizPage"
+            class="page hidden"
+        >
+
+            <div class="sub-page-header">
+
+                <button
+                    class="back-button"
+                    onclick="openPage('homePage')"
+                >
+                    ←
+                </button>
+
+                <div class="sub-page-title">
+                    Super Quiz
+                </div>
+
+            </div>
+
+            <div class="page-content">
+
+                <div class="section-title">
+                    Choose Your Game
+                </div>
+
+                <div class="game-list">
+
+                    <div
+                        class="game-card"
+                        onclick="startQuiz('PUBG Mobile')"
+                    >
+                        <div class="game-icon">
+                            🎯
+                        </div>
+
+                        <div>
+                            <div class="game-name">
+                                PUBG Mobile
+                            </div>
+
+                            <div class="game-info">
+                                Gaming quiz • Coming soon
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div
+                        class="game-card"
+                        onclick="startQuiz('Free Fire')"
+                    >
+                        <div class="game-icon">
+                            🔥
+                        </div>
+
+                        <div>
+                            <div class="game-name">
+                                Free Fire
+                            </div>
+
+                            <div class="game-info">
+                                Gaming quiz • Coming soon
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div
+                        class="game-card"
+                        onclick="startQuiz('BGMI')"
+                    >
+                        <div class="game-icon">
+                            🪖
+                        </div>
+
+                        <div>
+                            <div class="game-name">
+                                BGMI
+                            </div>
+
+                            <div class="game-info">
+                                Gaming quiz • Coming soon
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div
+                        class="game-card"
+                        onclick="startQuiz('Mobile Legends')"
+                    >
+                        <div class="game-icon">
+                            ⚔️
+                        </div>
+
+                        <div>
+                            <div class="game-name">
+                                Mobile Legends
+                            </div>
+
+                            <div class="game-info">
+                                Gaming quiz • Coming soon
+                            </div>
+                        </div>
                     </div>
 
                 </div>
 
             </div>
 
+        </main>
+
+
+        <!-- MEGA GAME PAGE -->
+
+        <main
+            id="gamesPage"
+            class="page hidden"
+        >
+
+            <div class="sub-page-header">
+
+                <button
+                    class="back-button"
+                    onclick="openPage('homePage')"
+                >
+                    ←
+                </button>
+
+                <div class="sub-page-title">
+                    Mega Game
+                </div>
+
+            </div>
+
+            <div class="page-content">
+
+                <div class="section-title">
+                    Play & Enjoy
+                </div>
+
+                <div class="game-list">
+
+                    <div
+                        class="game-card"
+                        onclick="openGame('Puzzle')"
+                    >
+                        <div class="game-icon">
+                            🧩
+                        </div>
+
+                        <div>
+                            <div class="game-name">
+                                Puzzle
+                            </div>
+
+                            <div class="game-info">
+                                Simple puzzle game
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div
+                        class="game-card"
+                        onclick="openGame('Tap Game')"
+                    >
+                        <div class="game-icon">
+                            👆
+                        </div>
+
+                        <div>
+                            <div class="game-name">
+                                Tap Game
+                            </div>
+
+                            <div class="game-info">
+                                Tap fast and score points
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div
+                        class="game-card"
+                        onclick="openGame('Tic Tac Toe')"
+                    >
+                        <div class="game-icon">
+                            ❌
+                        </div>
+
+                        <div>
+                            <div class="game-name">
+                                Tic Tac Toe
+                            </div>
+
+                            <div class="game-info">
+                                Classic two-player game
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div
+                        class="game-card"
+                        onclick="openGame('Memory Game')"
+                    >
+                        <div class="game-icon">
+                            🧠
+                        </div>
+
+                        <div>
+                            <div class="game-name">
+                                Memory Game
+                            </div>
+
+                            <div class="game-info">
+                                Test your memory
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+
+        <!-- SPIN PAGE -->
+
+        <main
+            id="spinPage"
+            class="page hidden"
+        >
+
+            <div class="sub-page-header">
+
+                <button
+                    class="back-button"
+                    onclick="openPage('homePage')"
+                >
+                    ←
+                </button>
+
+                <div class="sub-page-title">
+                    Spin Wheel
+                </div>
+
+            </div>
+
+            <div class="page-content">
+
+                <div class="spin-card">
+
+                    <div class="section-title">
+                        Daily Free Spin
+                    </div>
+
+                    <div class="wheel-container">
+
+                        <div class="wheel-pointer"></div>
+
+                        <div
+                            id="wheel"
+                            class="wheel"
+                        >
+
+                            <div
+                                class="wheel-text"
+                                style="transform: rotate(30deg) translateY(-95px) rotate(-30deg);"
+                            >
+                                5
+                            </div>
+
+                            <div
+                                class="wheel-text"
+                                style="transform: rotate(90deg) translateY(-95px) rotate(-90deg);"
+                            >
+                                10
+                            </div>
+
+                            <div
+                                class="wheel-text"
+                                style="transform: rotate(150deg) translateY(-95px) rotate(-150deg);"
+                            >
+                                15
+                            </div>
+
+                            <div
+                                class="wheel-text"
+                                style="transform: rotate(210deg) translateY(-95px) rotate(-210deg);"
+                            >
+                                20
+                            </div>
+
+                            <div
+                                class="wheel-text"
+                                style="transform: rotate(270deg) translateY(-95px) rotate(-270deg);"
+                            >
+                                25
+                            </div>
+
+                            <div
+                                class="wheel-text"
+                                style="transform: rotate(330deg) translateY(-95px) rotate(-330deg);"
+                            >
+                                50
+                            </div>
+
+                            <div class="wheel-center">
+                                🎡
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        id="spinButton"
+                        class="primary-button"
+                        onclick="spinWheel()"
+                    >
+                        🎡 SPIN NOW
+                    </button>
+
+                    <div
+                        id="spinMessage"
+                        class="message"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+
+        <!-- WALLET PAGE -->
+
+        <main
+            id="walletPage"
+            class="page hidden"
+        >
+
+            <div class="sub-page-header">
+
+                <div class="sub-page-title">
+                    💰 Wallet
+                </div>
+
+            </div>
+
+            <div class="page-content">
+
+                <div class="balance-card" style="margin: 20px 0;">
+
+                    <div class="balance-label">
+                        Your Balance
+                    </div>
+
+                    <div class="balance-value">
+                        🪙 <span id="walletCoins">0</span>
+                    </div>
+
+                </div>
+
+
+                <div class="section-title">
+                    Wallet
+                </div>
+
+                <div class="wallet-empty">
+
+                    <div class="wallet-icon">
+                        💰
+                    </div>
+
+                    <div>
+                        Your earning and redeem history will appear here.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+
+        <!-- PROFILE PAGE -->
+
+        <main
+            id="profilePage"
+            class="page hidden"
+        >
+
+            <div class="sub-page-header">
+
+                <div class="sub-page-title">
+                    👤 Profile
+                </div>
+
+            </div>
+
+            <div class="page-content">
+
+                <div class="profile-card">
+
+                    <div class="profile-avatar">
+                        👤
+                    </div>
+
+                    <h2>
+                        Gamer
+                    </h2>
+
+                    <div
+                        id="profileEmail"
+                        class="profile-email"
+                    ></div>
+
+                </div>
+
+
+                <button class="profile-option">
+                    👤 Account
+                </button>
+
+                <button class="profile-option">
+                    🔒 Security
+                </button>
+
+                <button class="profile-option">
+                    ⚙️ Settings
+                </button>
+
+                <button
+                    class="profile-option danger"
+                    onclick="logout()"
+                >
+                    🚪 Logout
+                </button>
+
+            </div>
+
+        </main>
+
+
+        <!-- BOTTOM NAVIGATION -->
+
+        <nav
+            id="bottomNav"
+            class="bottom-nav"
+        >
+
             <button
-                id="spinButton"
-                class="spin-button"
-                onclick="spinWheel()"
+                id="navHome"
+                class="nav-button active"
+                onclick="openPage('homePage')"
             >
-                🎡 SPIN NOW
+                <span class="nav-icon">🏠</span>
+                Home
             </button>
 
-            <p class="info">
-                One free spin every day
-            </p>
-
-            <div id="spinMessage" class="message"></div>
-
-
             <button
-                class="logout"
-                onclick="logout()"
+                id="navWallet"
+                class="nav-button"
+                onclick="openPage('walletPage')"
             >
-                Logout
+                <span class="nav-icon">💰</span>
+                Wallet
             </button>
 
-        </div>
+            <button
+                id="navProfile"
+                class="nav-button"
+                onclick="openPage('profilePage')"
+            >
+                <span class="nav-icon">👤</span>
+                Profile
+            </button>
 
-    </div>
+        </nav>
+
+    </section>
 
 </div>
 
@@ -404,39 +1290,23 @@
     let wheelRotation = 0;
 
 
-    function showMessage(text, success = false) {
+    function setMessage(
+        elementId,
+        text,
+        success = false
+    ) {
 
-        const message =
-            document.getElementById("message");
+        const element =
+            document.getElementById(elementId);
 
-        message.textContent = text;
+        if (!element) {
+            return;
+        }
 
-        message.style.color =
-            success ? "#4ade80" : "#f87171";
-    }
+        element.textContent = text;
 
-
-    function showRewardMessage(text, success = false) {
-
-        const message =
-            document.getElementById("rewardMessage");
-
-        message.textContent = text;
-
-        message.style.color =
-            success ? "#4ade80" : "#f87171";
-    }
-
-
-    function showSpinMessage(text, success = false) {
-
-        const message =
-            document.getElementById("spinMessage");
-
-        message.textContent = text;
-
-        message.style.color =
-            success ? "#4ade80" : "#f87171";
+        element.style.color =
+            success ? "#16a34a" : "#ef4444";
     }
 
 
@@ -449,48 +1319,57 @@
             document.getElementById("password").value;
 
         if (!email || !password) {
-            showMessage("Please enter email and password.");
+            setMessage(
+                "message",
+                "Please enter email and password."
+            );
             return;
         }
 
         if (password.length < 6) {
-            showMessage(
+            setMessage(
+                "message",
                 "Password must be at least 6 characters."
             );
             return;
         }
 
-        showMessage(
+        setMessage(
+            "message",
             "Creating account...",
             true
         );
 
         const { data, error } =
             await supabaseClient.auth.signUp({
-                email: email,
-                password: password
+                email,
+                password
             });
 
         if (error) {
-            showMessage(error.message);
+
+            setMessage(
+                "message",
+                error.message
+            );
+
             return;
         }
 
         if (data.user && !data.session) {
 
-            showMessage(
+            setMessage(
+                "message",
                 "Account created. Please confirm your email before login.",
                 true
             );
 
-        } else if (data.user) {
+            return;
+        }
 
-            showMessage(
-                "Account created successfully!",
-                true
-            );
+        if (data.user) {
 
-            showUser(data.user);
+            showApp(data.user);
 
             await loadProfile();
         }
@@ -506,36 +1385,78 @@
             document.getElementById("password").value;
 
         if (!email || !password) {
-            showMessage(
+
+            setMessage(
+                "message",
                 "Please enter email and password."
             );
+
             return;
         }
 
-        showMessage(
+        setMessage(
+            "message",
             "Logging in...",
             true
         );
 
         const { data, error } =
             await supabaseClient.auth.signInWithPassword({
-                email: email,
-                password: password
+                email,
+                password
             });
 
         if (error) {
-            showMessage(error.message);
+
+            setMessage(
+                "message",
+                error.message
+            );
+
             return;
         }
 
-        showMessage(
-            "Login successful!",
-            true
-        );
-
-        showUser(data.user);
+        showApp(data.user);
 
         await loadProfile();
+    }
+
+
+    function showApp(user) {
+
+        document
+            .getElementById("authScreen")
+            .classList.add("hidden");
+
+        document
+            .getElementById("appScreen")
+            .classList.remove("hidden");
+
+        const email =
+            user.email || "Gamer";
+
+        document.getElementById(
+            "profileEmail"
+        ).textContent = email;
+
+        document.getElementById(
+            "headerUsername"
+        ).textContent =
+            email.split("@")[0];
+
+        openPage("homePage");
+    }
+
+
+    function showAuth() {
+
+        document
+            .getElementById("appScreen")
+            .classList.add("hidden");
+
+        document
+            .getElementById("authScreen")
+            .classList.remove("hidden");
     }
 
 
@@ -569,66 +1490,101 @@
             return;
         }
 
-        if (data) {
-
-            document.getElementById("coins").textContent =
-                data.coins ?? 0;
-
-            updateDailyRewardButton(
-                data.last_daily_claim
-            );
-
-            updateSpinButton(
-                data.last_spin_claim
-            );
-        }
-    }
-
-
-    function updateDailyRewardButton(lastClaim) {
-
-        const button =
-            document.getElementById(
-                "dailyRewardButton"
-            );
-
-        if (!lastClaim) {
-
-            button.disabled = false;
-
-            button.textContent =
-                "🎁 Claim Daily Reward";
-
+        if (!data) {
             return;
         }
 
-        const claimDate =
-            new Date(lastClaim);
+        const coins =
+            data.coins ?? 0;
+
+        document.getElementById(
+            "headerCoins"
+        ).textContent = coins;
+
+        document.getElementById(
+            "homeCoins"
+        ).textContent = coins;
+
+        document.getElementById(
+            "walletCoins"
+        ).textContent = coins;
+
+        updateDailyButton(
+            data.last_daily_claim
+        );
+
+        updateSpinButton(
+            data.last_spin_claim
+        );
+    }
+
+
+    function isSameUTCDay(dateValue) {
+
+        if (!dateValue) {
+            return false;
+        }
+
+        const date =
+            new Date(dateValue);
 
         const now =
             new Date();
 
-        const sameDay =
-            claimDate.getUTCFullYear() ===
+        return (
+            date.getUTCFullYear() ===
                 now.getUTCFullYear() &&
-            claimDate.getUTCMonth() ===
+            date.getUTCMonth() ===
                 now.getUTCMonth() &&
-            claimDate.getUTCDate() ===
-                now.getUTCDate();
+            date.getUTCDate() ===
+                now.getUTCDate()
+        );
+    }
 
-        if (sameDay) {
 
-            button.disabled = true;
+    function updateDailyButton(lastClaim) {
 
-            button.textContent =
-                "✅ Reward Already Claimed";
+        const cards =
+            document.querySelectorAll(
+                ".quick-card"
+            );
+
+        if (!cards.length) {
+            return;
+        }
+
+        const button =
+            cards[0];
+
+        const title =
+            button.querySelector(
+                ".quick-title"
+            );
+
+        const description =
+            button.querySelector(
+                ".quick-description"
+            );
+
+        if (isSameUTCDay(lastClaim)) {
+
+            title.textContent =
+                "Daily Win Claimed";
+
+            description.textContent =
+                "Come back tomorrow for your next reward.";
+
+            button.style.opacity = "0.65";
 
         } else {
 
-            button.disabled = false;
+            title.textContent =
+                "Daily Win";
 
-            button.textContent =
-                "🎁 Claim Daily Reward";
+            description.textContent =
+                "Claim your daily 10–15 coins.";
+
+            button.style.opacity = "1";
         }
     }
 
@@ -640,31 +1596,11 @@
                 "spinButton"
             );
 
-        if (!lastSpin) {
-
-            button.disabled = false;
-
-            button.textContent =
-                "🎡 SPIN NOW";
-
+        if (!button) {
             return;
         }
 
-        const spinDate =
-            new Date(lastSpin);
-
-        const now =
-            new Date();
-
-        const sameDay =
-            spinDate.getUTCFullYear() ===
-                now.getUTCFullYear() &&
-            spinDate.getUTCMonth() ===
-                now.getUTCMonth() &&
-            spinDate.getUTCDate() ===
-                now.getUTCDate();
-
-        if (sameDay) {
+        if (isSameUTCDay(lastSpin)) {
 
             button.disabled = true;
 
@@ -683,21 +1619,6 @@
 
     async function claimDailyReward() {
 
-        const button =
-            document.getElementById(
-                "dailyRewardButton"
-            );
-
-        button.disabled = true;
-
-        button.textContent =
-            "⏳ Claiming...";
-
-        showRewardMessage(
-            "Processing reward...",
-            true
-        );
-
         const { data, error } =
             await supabaseClient.rpc(
                 "claim_daily_reward"
@@ -710,74 +1631,46 @@
                 error
             );
 
-            showRewardMessage(
-                "Unable to claim reward. Please try again."
-            );
-
-            button.disabled = false;
-
-            button.textContent =
-                "🎁 Claim Daily Reward";
-
             return;
         }
 
         if (!data) {
-
-            showRewardMessage(
-                "No response from server."
-            );
-
-            button.disabled = false;
-
-            button.textContent =
-                "🎁 Claim Daily Reward";
-
             return;
         }
 
         if (!data.success) {
-
-            showRewardMessage(
-                data.message
-            );
 
             if (
                 data.message ===
                 "Daily reward already claimed"
             ) {
 
-                button.disabled = true;
+                await loadProfile();
 
-                button.textContent =
-                    "✅ Reward Already Claimed";
-
-            } else {
-
-                button.disabled = false;
-
-                button.textContent =
-                    "🎁 Claim Daily Reward";
             }
 
             return;
         }
 
         document.getElementById(
-            "coins"
+            "headerCoins"
         ).textContent = data.coins;
 
-        showRewardMessage(
+        document.getElementById(
+            "homeCoins"
+        ).textContent = data.coins;
+
+        document.getElementById(
+            "walletCoins"
+        ).textContent = data.coins;
+
+        alert(
             "🎉 You received " +
             data.reward +
-            " coins!",
-            true
+            " coins!"
         );
 
-        button.disabled = true;
-
-        button.textContent =
-            "✅ Reward Already Claimed";
+        await loadProfile();
     }
 
 
@@ -793,12 +1686,17 @@
                 "wheel"
             );
 
+        if (!button || !wheel) {
+            return;
+        }
+
         button.disabled = true;
 
         button.textContent =
             "⏳ Spinning...";
 
-        showSpinMessage(
+        setMessage(
+            "spinMessage",
             "Good luck! 🎉",
             true
         );
@@ -817,7 +1715,8 @@
                 error
             );
 
-            showSpinMessage(
+            setMessage(
+                "spinMessage",
                 "Unable to spin. Please try again."
             );
 
@@ -832,10 +1731,6 @@
 
         if (!data) {
 
-            showSpinMessage(
-                "No response from server."
-            );
-
             button.disabled = false;
 
             button.textContent =
@@ -847,7 +1742,8 @@
 
         if (!data.success) {
 
-            showSpinMessage(
+            setMessage(
+                "spinMessage",
                 data.message
             );
 
@@ -891,14 +1787,12 @@
             rewardIndex * 60 + 30;
 
 
-        const targetRotation =
+        const rotation =
             360 * 6 +
             (360 - segmentCenter);
 
 
-        wheelRotation +=
-            targetRotation;
-
+        wheelRotation += rotation;
 
         wheel.style.transform =
             "rotate(" +
@@ -906,55 +1800,132 @@
             "deg)";
 
 
-        setTimeout(function() {
+        setTimeout(
+            async function() {
 
-            document.getElementById(
-                "coins"
-            ).textContent =
-                data.coins;
+                document.getElementById(
+                    "headerCoins"
+                ).textContent =
+                    data.coins;
 
-            showSpinMessage(
-                "🎉 You won " +
-                reward +
-                " coins!",
-                true
+                document.getElementById(
+                    "homeCoins"
+                ).textContent =
+                    data.coins;
+
+                document.getElementById(
+                    "walletCoins"
+                ).textContent =
+                    data.coins;
+
+                setMessage(
+                    "spinMessage",
+                    "🎉 You won " +
+                    reward +
+                    " coins!",
+                    true
+                );
+
+                button.disabled = true;
+
+                button.textContent =
+                    "✅ Spin Already Used";
+
+                await loadProfile();
+
+            },
+            4200
+        );
+    }
+
+
+    function openPage(pageId) {
+
+        const pages =
+            document.querySelectorAll(
+                ".page"
             );
 
-            button.disabled = true;
+        pages.forEach(function(page) {
 
-            button.textContent =
-                "✅ Spin Already Used";
+            page.classList.add("hidden");
 
-        }, 4200);
+        });
+
+
+        const target =
+            document.getElementById(pageId);
+
+        if (target) {
+            target.classList.remove("hidden");
+        }
+
+
+        document
+            .querySelectorAll(".nav-button")
+            .forEach(function(button) {
+
+                button.classList.remove(
+                    "active"
+                );
+
+            });
+
+
+        if (pageId === "homePage") {
+
+            document
+                .getElementById("navHome")
+                .classList.add("active");
+
+        }
+
+        if (pageId === "walletPage") {
+
+            document
+                .getElementById("navWallet")
+                .classList.add("active");
+
+        }
+
+        if (pageId === "profilePage") {
+
+            document
+                .getElementById("navProfile")
+                .classList.add("active");
+
+        }
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     }
 
 
-    function showUser(user) {
+    function startQuiz(gameName) {
 
-        document
-            .getElementById("authSection")
-            .classList.add("hidden");
-
-        document
-            .getElementById("userSection")
-            .classList.remove("hidden");
-
-        document.getElementById(
-            "userEmail"
-        ).textContent =
-            user.email || "";
+        alert(
+            gameName +
+            " quiz is coming soon!"
+        );
     }
 
 
-    function showLogin() {
+    function openGame(gameName) {
 
-        document
-            .getElementById("userSection")
-            .classList.add("hidden");
+        alert(
+            gameName +
+            " is coming soon!"
+        );
+    }
 
-        document
-            .getElementById("authSection")
-            .classList.remove("hidden");
+
+    function openRefer() {
+
+        alert(
+            "Refer & Earn will be added here."
+        );
     }
 
 
@@ -962,19 +1933,7 @@
 
         await supabaseClient.auth.signOut();
 
-        showLogin();
-
-        document.getElementById(
-            "coins"
-        ).textContent = "0";
-
-        document.getElementById(
-            "userEmail"
-        ).textContent = "";
-
-        showRewardMessage("");
-
-        showSpinMessage("");
+        showAuth();
     }
 
 
@@ -990,32 +1949,32 @@
             session.user
         ) {
 
-            showUser(session.user);
+            showApp(session.user);
 
             await loadProfile();
 
         } else {
 
-            showLogin();
+            showAuth();
         }
     }
 
 
     supabaseClient.auth.onAuthStateChange(
-        async (event, session) => {
+        async function(event, session) {
 
             if (
                 session &&
                 session.user
             ) {
 
-                showUser(session.user);
+                showApp(session.user);
 
                 await loadProfile();
 
             } else {
 
-                showLogin();
+                showAuth();
             }
         }
     );
