@@ -21,19 +21,26 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
 
         .container {
-            width: 90%;
-            max-width: 420px;
+            width: 100%;
+            max-width: 430px;
+        }
+
+        .card {
             background: #1e293b;
-            padding: 30px;
+            border: 1px solid #334155;
             border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 10px;
+            margin: 0 0 10px;
+            font-size: 30px;
         }
 
         .subtitle {
@@ -45,56 +52,99 @@
         input {
             width: 100%;
             padding: 14px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border: 1px solid #475569;
             border-radius: 10px;
             background: #0f172a;
             color: white;
-            font-size: 16px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #6366f1;
         }
 
         button {
             width: 100%;
             padding: 14px;
+            margin-top: 10px;
             border: none;
             border-radius: 10px;
-            background: #22c55e;
+            background: #6366f1;
             color: white;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            margin-bottom: 10px;
         }
 
         button:hover {
-            background: #16a34a;
+            background: #4f46e5;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         .secondary {
             background: #334155;
         }
 
-        .message {
-            text-align: center;
-            margin-top: 15px;
-            color: #86efac;
+        .secondary:hover {
+            background: #475569;
         }
 
-        .error {
-            color: #f87171;
+        .logout {
+            background: #ef4444;
+        }
+
+        .logout:hover {
+            background: #dc2626;
+        }
+
+        .reward {
+            background: #16a34a;
+        }
+
+        .reward:hover {
+            background: #15803d;
+        }
+
+        .coins {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 14px;
+            padding: 18px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .user-email {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 14px;
+            word-break: break-word;
+        }
+
+        .message {
+            margin-top: 15px;
+            text-align: center;
+            min-height: 20px;
+            font-size: 14px;
         }
 
         .hidden {
             display: none;
         }
 
-        .user-box {
+        .section-title {
             text-align: center;
-        }
-
-        .coins {
-            font-size: 24px;
-            margin: 20px 0;
+            margin-top: 25px;
+            color: #cbd5e1;
+            font-size: 18px;
         }
     </style>
 </head>
@@ -103,180 +153,379 @@
 
 <div class="container">
 
-    <div id="authSection">
+    <div class="card">
 
-        <h1>🎮 Game Quiz Shop</h1>
+        <div id="authSection">
+            <h1>🎮 Game Quiz Shop</h1>
 
-        <p class="subtitle">Create your account or login</p>
+            <p class="subtitle">
+                Create your account or login
+            </p>
 
-        <input
-            type="email"
-            id="email"
-            placeholder="Email address"
-        >
+            <input
+                type="email"
+                id="email"
+                placeholder="Email address"
+                autocomplete="email"
+            >
 
-        <input
-            type="password"
-            id="password"
-            placeholder="Password"
-        >
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                autocomplete="current-password"
+            >
 
-        <button onclick="register()">
-            Create Account
-        </button>
+            <button onclick="register()">
+                Create Account
+            </button>
 
-        <button class="secondary" onclick="login()">
-            Login
-        </button>
+            <button class="secondary" onclick="login()">
+                Login
+            </button>
 
-        <div id="message" class="message"></div>
-
-    </div>
-
-    <div id="userSection" class="user-box hidden">
-
-        <h1>🎮 Welcome!</h1>
-
-        <p>You are successfully logged in.</p>
-
-        <div class="coins">
-            🪙 Coins: <span id="coins">0</span>
+            <div id="message" class="message"></div>
         </div>
 
-        <button onclick="logout()">
-            Logout
-        </button>
+
+        <div id="userSection" class="hidden">
+
+            <h1>🎮 Welcome!</h1>
+
+            <p class="subtitle">
+                You are successfully logged in.
+            </p>
+
+            <p id="userEmail" class="user-email"></p>
+
+            <div class="coins">
+                🪙 Coins: <span id="coins">0</span>
+            </div>
+
+            <button
+                id="dailyRewardButton"
+                class="reward"
+                onclick="claimDailyReward()"
+            >
+                🎁 Claim Daily Reward
+            </button>
+
+            <div id="rewardMessage" class="message"></div>
+
+            <div class="section-title">
+                More games and rewards coming soon!
+            </div>
+
+            <button class="logout" onclick="logout()">
+                Logout
+            </button>
+
+        </div>
 
     </div>
 
 </div>
 
+
 <script>
 
-const SUPABASE_URL = "https://pkcsbazsqkhoxqfadvkp.supabase.co";
+    const SUPABASE_URL = "https://pkcsbazsqkhoxqfadvkp.supabase.co";
 
-const SUPABASE_KEY = "sb_publishable_wNkohhRTugNOEHChrPEOWQ_OVqRFL6y";
+    const SUPABASE_KEY = "sb_publishable_wNkohhRTugNOEHChrPEOWQ_OVqRFL6y";
 
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+    const supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
-async function register() {
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
+    function showMessage(text, success = false) {
+        const message = document.getElementById("message");
 
-    const message = document.getElementById("message");
-
-    message.className = "message";
-
-    if (!email || !password) {
-        message.textContent = "Please enter your email and password.";
-        message.className = "message error";
-        return;
+        message.textContent = text;
+        message.style.color = success ? "#4ade80" : "#f87171";
     }
 
-    if (password.length < 6) {
-        message.textContent = "Password must be at least 6 characters.";
-        message.className = "message error";
-        return;
+
+    function showRewardMessage(text, success = false) {
+        const message = document.getElementById("rewardMessage");
+
+        message.textContent = text;
+        message.style.color = success ? "#4ade80" : "#f87171";
     }
 
-    const { data, error } = await supabaseClient.auth.signUp({
-        email: email,
-        password: password
-    });
 
-    if (error) {
-        message.textContent = error.message;
-        message.className = "message error";
-        return;
-    }
+    async function register() {
 
-    if (data.user && !data.session) {
-        message.textContent =
-            "Account created. Please check your email to confirm your account.";
-        return;
-    }
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
 
-    message.textContent = "Account created successfully!";
+        if (!email || !password) {
+            showMessage("Please enter email and password.");
+            return;
+        }
 
-    showUser(data.user);
-}
+        if (password.length < 6) {
+            showMessage("Password must be at least 6 characters.");
+            return;
+        }
 
-async function login() {
+        showMessage("Creating account...", true);
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-
-    const message = document.getElementById("message");
-
-    message.className = "message";
-
-    if (!email || !password) {
-        message.textContent = "Please enter your email and password.";
-        message.className = "message error";
-        return;
-    }
-
-    const { data, error } =
-        await supabaseClient.auth.signInWithPassword({
+        const { data, error } = await supabaseClient.auth.signUp({
             email: email,
             password: password
         });
 
-    if (error) {
-        message.textContent = error.message;
-        message.className = "message error";
-        return;
-    }
+        if (error) {
+            showMessage(error.message);
+            return;
+        }
 
-    showUser(data.user);
-}
-
-async function logout() {
-
-    await supabaseClient.auth.signOut();
-
-    document.getElementById("authSection")
-        .classList.remove("hidden");
-
-    document.getElementById("userSection")
-        .classList.add("hidden");
-
-    document.getElementById("message").textContent = "";
-}
-
-function showUser(user) {
-
-    document.getElementById("authSection")
-        .classList.add("hidden");
-
-    document.getElementById("userSection")
-        .classList.remove("hidden");
-}
-
-async function checkUser() {
-
-    const { data } =
-        await supabaseClient.auth.getSession();
-
-    if (data.session) {
-        showUser(data.session.user);
-    }
-}
-
-supabaseClient.auth.onAuthStateChange(
-    (event, session) => {
-
-        if (session) {
-            showUser(session.user);
+        if (data.user && !data.session) {
+            showMessage(
+                "Account created. Please confirm your email before login.",
+                true
+            );
+        } else if (data.user) {
+            showMessage("Account created successfully!", true);
+            showUser(data.user);
+            await loadProfile();
         }
     }
-);
 
-checkUser();
+
+    async function login() {
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+
+        if (!email || !password) {
+            showMessage("Please enter email and password.");
+            return;
+        }
+
+        showMessage("Logging in...", true);
+
+        const { data, error } =
+            await supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+
+        if (error) {
+            showMessage(error.message);
+            return;
+        }
+
+        showMessage("Login successful!", true);
+
+        showUser(data.user);
+
+        await loadProfile();
+    }
+
+
+    async function loadProfile() {
+
+        const {
+            data: { user }
+        } = await supabaseClient.auth.getUser();
+
+        if (!user) {
+            return;
+        }
+
+        const { data, error } = await supabaseClient
+            .from("profiles")
+            .select("coins, last_daily_claim")
+            .eq("user_id", user.id)
+            .single();
+
+        if (error) {
+            console.error("Profile error:", error);
+            return;
+        }
+
+        if (data) {
+            document.getElementById("coins").textContent =
+                data.coins ?? 0;
+
+            updateDailyRewardButton(data.last_daily_claim);
+        }
+    }
+
+
+    function updateDailyRewardButton(lastClaim) {
+
+        const button =
+            document.getElementById("dailyRewardButton");
+
+        if (!lastClaim) {
+            button.disabled = false;
+            button.textContent = "🎁 Claim Daily Reward";
+            return;
+        }
+
+        const claimDate = new Date(lastClaim);
+        const now = new Date();
+
+        const sameDay =
+            claimDate.getUTCFullYear() === now.getUTCFullYear() &&
+            claimDate.getUTCMonth() === now.getUTCMonth() &&
+            claimDate.getUTCDate() === now.getUTCDate();
+
+        if (sameDay) {
+            button.disabled = true;
+            button.textContent = "✅ Reward Already Claimed";
+        } else {
+            button.disabled = false;
+            button.textContent = "🎁 Claim Daily Reward";
+        }
+    }
+
+
+    async function claimDailyReward() {
+
+        const button =
+            document.getElementById("dailyRewardButton");
+
+        button.disabled = true;
+        button.textContent = "⏳ Claiming...";
+
+        showRewardMessage("Processing reward...", true);
+
+        const { data, error } =
+            await supabaseClient.rpc("claim_daily_reward");
+
+        if (error) {
+            console.error("Daily reward error:", error);
+
+            showRewardMessage(
+                "Unable to claim reward. Please try again."
+            );
+
+            button.disabled = false;
+            button.textContent = "🎁 Claim Daily Reward";
+
+            return;
+        }
+
+        if (!data) {
+            showRewardMessage("No response from server.");
+            button.disabled = false;
+            button.textContent = "🎁 Claim Daily Reward";
+            return;
+        }
+
+        if (!data.success) {
+
+            showRewardMessage(data.message);
+
+            if (data.message === "Daily reward already claimed") {
+                button.disabled = true;
+                button.textContent = "✅ Reward Already Claimed";
+            } else {
+                button.disabled = false;
+                button.textContent = "🎁 Claim Daily Reward";
+            }
+
+            return;
+        }
+
+        document.getElementById("coins").textContent =
+            data.coins;
+
+        showRewardMessage(
+            "🎉 You received " +
+            data.reward +
+            " coins!",
+            true
+        );
+
+        button.disabled = true;
+        button.textContent = "✅ Reward Already Claimed";
+    }
+
+
+    function showUser(user) {
+
+        document
+            .getElementById("authSection")
+            .classList.add("hidden");
+
+        document
+            .getElementById("userSection")
+            .classList.remove("hidden");
+
+        document.getElementById("userEmail").textContent =
+            user.email || "";
+    }
+
+
+    function showLogin() {
+
+        document
+            .getElementById("userSection")
+            .classList.add("hidden");
+
+        document
+            .getElementById("authSection")
+            .classList.remove("hidden");
+    }
+
+
+    async function logout() {
+
+        await supabaseClient.auth.signOut();
+
+        showLogin();
+
+        document.getElementById("coins").textContent = "0";
+
+        document.getElementById("userEmail").textContent = "";
+
+        showRewardMessage("");
+    }
+
+
+    async function checkUser() {
+
+        const {
+            data: { session }
+        } = await supabaseClient.auth.getSession();
+
+        if (session && session.user) {
+
+            showUser(session.user);
+
+            await loadProfile();
+
+        } else {
+
+            showLogin();
+        }
+    }
+
+
+    supabaseClient.auth.onAuthStateChange(
+        async (event, session) => {
+
+            if (session && session.user) {
+
+                showUser(session.user);
+
+                await loadProfile();
+
+            } else {
+
+                showLogin();
+            }
+        }
+    );
+
+
+    checkUser();
 
 </script>
 
