@@ -18,15 +18,13 @@
             background: #0f172a;
             color: white;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 20px;
         }
 
         .container {
             width: 100%;
-            max-width: 430px;
+            max-width: 500px;
+            margin: 40px auto;
         }
 
         .card {
@@ -79,7 +77,7 @@
         }
 
         button:hover {
-            background: #4f46e5;
+            opacity: 0.9;
         }
 
         button:disabled {
@@ -91,24 +89,12 @@
             background: #334155;
         }
 
-        .secondary:hover {
-            background: #475569;
-        }
-
         .logout {
             background: #ef4444;
         }
 
-        .logout:hover {
-            background: #dc2626;
-        }
-
         .reward {
             background: #16a34a;
-        }
-
-        .reward:hover {
-            background: #15803d;
         }
 
         .coins {
@@ -140,11 +126,122 @@
             display: none;
         }
 
-        .section-title {
+        .feature-title {
             text-align: center;
-            margin-top: 25px;
-            color: #cbd5e1;
+            font-size: 22px;
+            margin: 30px 0 15px;
+        }
+
+        .wheel-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+        }
+
+        .wheel {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 8px solid #f8fafc;
+            background: conic-gradient(
+                #ef4444 0deg 60deg,
+                #f59e0b 60deg 120deg,
+                #22c55e 120deg 180deg,
+                #06b6d4 180deg 240deg,
+                #3b82f6 240deg 300deg,
+                #8b5cf6 300deg 360deg
+            );
+            position: relative;
+            transition: transform 4s cubic-bezier(0.15, 0.85, 0.25, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .wheel-label {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 70px;
+            height: 30px;
+            margin-left: -35px;
+            margin-top: -15px;
+            text-align: center;
             font-size: 18px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 3px black;
+        }
+
+        .label-5 {
+            transform: rotate(30deg) translateY(-105px) rotate(-30deg);
+        }
+
+        .label-10 {
+            transform: rotate(90deg) translateY(-105px) rotate(-90deg);
+        }
+
+        .label-15 {
+            transform: rotate(150deg) translateY(-105px) rotate(-150deg);
+        }
+
+        .label-20 {
+            transform: rotate(210deg) translateY(-105px) rotate(-210deg);
+        }
+
+        .label-25 {
+            transform: rotate(270deg) translateY(-105px) rotate(-270deg);
+        }
+
+        .label-50 {
+            transform: rotate(330deg) translateY(-105px) rotate(-330deg);
+        }
+
+        .wheel-pointer {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 30px solid white;
+            z-index: 5;
+            filter: drop-shadow(0 2px 3px black);
+        }
+
+        .wheel-center {
+            position: absolute;
+            width: 65px;
+            height: 65px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #0f172a;
+            border: 5px solid white;
+            border-radius: 50%;
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+        }
+
+        .spin-button {
+            background: #f59e0b;
+            color: #111827;
+            font-size: 18px;
+        }
+
+        .spin-button:hover {
+            background: #d97706;
+        }
+
+        .info {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 14px;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -156,6 +253,7 @@
     <div class="card">
 
         <div id="authSection">
+
             <h1>🎮 Game Quiz Shop</h1>
 
             <p class="subtitle">
@@ -166,14 +264,12 @@
                 type="email"
                 id="email"
                 placeholder="Email address"
-                autocomplete="email"
             >
 
             <input
                 type="password"
                 id="password"
                 placeholder="Password"
-                autocomplete="current-password"
             >
 
             <button onclick="register()">
@@ -185,6 +281,7 @@
             </button>
 
             <div id="message" class="message"></div>
+
         </div>
 
 
@@ -202,6 +299,11 @@
                 🪙 Coins: <span id="coins">0</span>
             </div>
 
+
+            <h2 class="feature-title">
+                🎁 Daily Reward
+            </h2>
+
             <button
                 id="dailyRewardButton"
                 class="reward"
@@ -212,11 +314,68 @@
 
             <div id="rewardMessage" class="message"></div>
 
-            <div class="section-title">
-                More games and rewards coming soon!
+
+            <h2 class="feature-title">
+                🎡 Spin Wheel
+            </h2>
+
+            <div class="wheel-container">
+
+                <div class="wheel-pointer"></div>
+
+                <div id="wheel" class="wheel">
+
+                    <div class="wheel-label label-5">
+                        5 🪙
+                    </div>
+
+                    <div class="wheel-label label-10">
+                        10 🪙
+                    </div>
+
+                    <div class="wheel-label label-15">
+                        15 🪙
+                    </div>
+
+                    <div class="wheel-label label-20">
+                        20 🪙
+                    </div>
+
+                    <div class="wheel-label label-25">
+                        25 🪙
+                    </div>
+
+                    <div class="wheel-label label-50">
+                        50 🪙
+                    </div>
+
+                    <div class="wheel-center">
+                        🎡
+                    </div>
+
+                </div>
+
             </div>
 
-            <button class="logout" onclick="logout()">
+            <button
+                id="spinButton"
+                class="spin-button"
+                onclick="spinWheel()"
+            >
+                🎡 SPIN NOW
+            </button>
+
+            <p class="info">
+                One free spin every day
+            </p>
+
+            <div id="spinMessage" class="message"></div>
+
+
+            <button
+                class="logout"
+                onclick="logout()"
+            >
                 Logout
             </button>
 
@@ -229,36 +388,65 @@
 
 <script>
 
-    const SUPABASE_URL = "https://pkcsbazsqkhoxqfadvkp.supabase.co";
+    const SUPABASE_URL =
+        "https://pkcsbazsqkhoxqfadvkp.supabase.co";
 
-    const SUPABASE_KEY = "sb_publishable_wNkohhRTugNOEHChrPEOWQ_OVqRFL6y";
+    const SUPABASE_KEY =
+        "YOUR_SUPABASE_PUBLISHABLE_KEY";
 
-    const supabaseClient = window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+
+    let wheelRotation = 0;
 
 
     function showMessage(text, success = false) {
-        const message = document.getElementById("message");
+
+        const message =
+            document.getElementById("message");
 
         message.textContent = text;
-        message.style.color = success ? "#4ade80" : "#f87171";
+
+        message.style.color =
+            success ? "#4ade80" : "#f87171";
     }
 
 
     function showRewardMessage(text, success = false) {
-        const message = document.getElementById("rewardMessage");
+
+        const message =
+            document.getElementById("rewardMessage");
 
         message.textContent = text;
-        message.style.color = success ? "#4ade80" : "#f87171";
+
+        message.style.color =
+            success ? "#4ade80" : "#f87171";
+    }
+
+
+    function showSpinMessage(text, success = false) {
+
+        const message =
+            document.getElementById("spinMessage");
+
+        message.textContent = text;
+
+        message.style.color =
+            success ? "#4ade80" : "#f87171";
     }
 
 
     async function register() {
 
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
+        const email =
+            document.getElementById("email").value.trim();
+
+        const password =
+            document.getElementById("password").value;
 
         if (!email || !password) {
             showMessage("Please enter email and password.");
@@ -266,16 +454,22 @@
         }
 
         if (password.length < 6) {
-            showMessage("Password must be at least 6 characters.");
+            showMessage(
+                "Password must be at least 6 characters."
+            );
             return;
         }
 
-        showMessage("Creating account...", true);
+        showMessage(
+            "Creating account...",
+            true
+        );
 
-        const { data, error } = await supabaseClient.auth.signUp({
-            email: email,
-            password: password
-        });
+        const { data, error } =
+            await supabaseClient.auth.signUp({
+                email: email,
+                password: password
+            });
 
         if (error) {
             showMessage(error.message);
@@ -283,13 +477,21 @@
         }
 
         if (data.user && !data.session) {
+
             showMessage(
                 "Account created. Please confirm your email before login.",
                 true
             );
+
         } else if (data.user) {
-            showMessage("Account created successfully!", true);
+
+            showMessage(
+                "Account created successfully!",
+                true
+            );
+
             showUser(data.user);
+
             await loadProfile();
         }
     }
@@ -297,15 +499,23 @@
 
     async function login() {
 
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
+        const email =
+            document.getElementById("email").value.trim();
+
+        const password =
+            document.getElementById("password").value;
 
         if (!email || !password) {
-            showMessage("Please enter email and password.");
+            showMessage(
+                "Please enter email and password."
+            );
             return;
         }
 
-        showMessage("Logging in...", true);
+        showMessage(
+            "Logging in...",
+            true
+        );
 
         const { data, error } =
             await supabaseClient.auth.signInWithPassword({
@@ -318,7 +528,10 @@
             return;
         }
 
-        showMessage("Login successful!", true);
+        showMessage(
+            "Login successful!",
+            true
+        );
 
         showUser(data.user);
 
@@ -330,28 +543,44 @@
 
         const {
             data: { user }
-        } = await supabaseClient.auth.getUser();
+        } =
+            await supabaseClient.auth.getUser();
 
         if (!user) {
             return;
         }
 
-        const { data, error } = await supabaseClient
-            .from("profiles")
-            .select("coins, last_daily_claim")
-            .eq("user_id", user.id)
-            .single();
+        const { data, error } =
+            await supabaseClient
+                .from("profiles")
+                .select(
+                    "coins, last_daily_claim, last_spin_claim"
+                )
+                .eq("user_id", user.id)
+                .single();
 
         if (error) {
-            console.error("Profile error:", error);
+
+            console.error(
+                "Profile error:",
+                error
+            );
+
             return;
         }
 
         if (data) {
+
             document.getElementById("coins").textContent =
                 data.coins ?? 0;
 
-            updateDailyRewardButton(data.last_daily_claim);
+            updateDailyRewardButton(
+                data.last_daily_claim
+            );
+
+            updateSpinButton(
+                data.last_spin_claim
+            );
         }
     }
 
@@ -359,28 +588,95 @@
     function updateDailyRewardButton(lastClaim) {
 
         const button =
-            document.getElementById("dailyRewardButton");
+            document.getElementById(
+                "dailyRewardButton"
+            );
 
         if (!lastClaim) {
+
             button.disabled = false;
-            button.textContent = "🎁 Claim Daily Reward";
+
+            button.textContent =
+                "🎁 Claim Daily Reward";
+
             return;
         }
 
-        const claimDate = new Date(lastClaim);
-        const now = new Date();
+        const claimDate =
+            new Date(lastClaim);
+
+        const now =
+            new Date();
 
         const sameDay =
-            claimDate.getUTCFullYear() === now.getUTCFullYear() &&
-            claimDate.getUTCMonth() === now.getUTCMonth() &&
-            claimDate.getUTCDate() === now.getUTCDate();
+            claimDate.getUTCFullYear() ===
+                now.getUTCFullYear() &&
+            claimDate.getUTCMonth() ===
+                now.getUTCMonth() &&
+            claimDate.getUTCDate() ===
+                now.getUTCDate();
 
         if (sameDay) {
+
             button.disabled = true;
-            button.textContent = "✅ Reward Already Claimed";
+
+            button.textContent =
+                "✅ Reward Already Claimed";
+
         } else {
+
             button.disabled = false;
-            button.textContent = "🎁 Claim Daily Reward";
+
+            button.textContent =
+                "🎁 Claim Daily Reward";
+        }
+    }
+
+
+    function updateSpinButton(lastSpin) {
+
+        const button =
+            document.getElementById(
+                "spinButton"
+            );
+
+        if (!lastSpin) {
+
+            button.disabled = false;
+
+            button.textContent =
+                "🎡 SPIN NOW";
+
+            return;
+        }
+
+        const spinDate =
+            new Date(lastSpin);
+
+        const now =
+            new Date();
+
+        const sameDay =
+            spinDate.getUTCFullYear() ===
+                now.getUTCFullYear() &&
+            spinDate.getUTCMonth() ===
+                now.getUTCMonth() &&
+            spinDate.getUTCDate() ===
+                now.getUTCDate();
+
+        if (sameDay) {
+
+            button.disabled = true;
+
+            button.textContent =
+                "✅ Spin Already Used";
+
+        } else {
+
+            button.disabled = false;
+
+            button.textContent =
+                "🎡 SPIN NOW";
         }
     }
 
@@ -388,53 +684,88 @@
     async function claimDailyReward() {
 
         const button =
-            document.getElementById("dailyRewardButton");
+            document.getElementById(
+                "dailyRewardButton"
+            );
 
         button.disabled = true;
-        button.textContent = "⏳ Claiming...";
 
-        showRewardMessage("Processing reward...", true);
+        button.textContent =
+            "⏳ Claiming...";
+
+        showRewardMessage(
+            "Processing reward...",
+            true
+        );
 
         const { data, error } =
-            await supabaseClient.rpc("claim_daily_reward");
+            await supabaseClient.rpc(
+                "claim_daily_reward"
+            );
 
         if (error) {
-            console.error("Daily reward error:", error);
+
+            console.error(
+                "Daily reward error:",
+                error
+            );
 
             showRewardMessage(
                 "Unable to claim reward. Please try again."
             );
 
             button.disabled = false;
-            button.textContent = "🎁 Claim Daily Reward";
+
+            button.textContent =
+                "🎁 Claim Daily Reward";
 
             return;
         }
 
         if (!data) {
-            showRewardMessage("No response from server.");
+
+            showRewardMessage(
+                "No response from server."
+            );
+
             button.disabled = false;
-            button.textContent = "🎁 Claim Daily Reward";
+
+            button.textContent =
+                "🎁 Claim Daily Reward";
+
             return;
         }
 
         if (!data.success) {
 
-            showRewardMessage(data.message);
+            showRewardMessage(
+                data.message
+            );
 
-            if (data.message === "Daily reward already claimed") {
+            if (
+                data.message ===
+                "Daily reward already claimed"
+            ) {
+
                 button.disabled = true;
-                button.textContent = "✅ Reward Already Claimed";
+
+                button.textContent =
+                    "✅ Reward Already Claimed";
+
             } else {
+
                 button.disabled = false;
-                button.textContent = "🎁 Claim Daily Reward";
+
+                button.textContent =
+                    "🎁 Claim Daily Reward";
             }
 
             return;
         }
 
-        document.getElementById("coins").textContent =
-            data.coins;
+        document.getElementById(
+            "coins"
+        ).textContent = data.coins;
 
         showRewardMessage(
             "🎉 You received " +
@@ -444,7 +775,157 @@
         );
 
         button.disabled = true;
-        button.textContent = "✅ Reward Already Claimed";
+
+        button.textContent =
+            "✅ Reward Already Claimed";
+    }
+
+
+    async function spinWheel() {
+
+        const button =
+            document.getElementById(
+                "spinButton"
+            );
+
+        const wheel =
+            document.getElementById(
+                "wheel"
+            );
+
+        button.disabled = true;
+
+        button.textContent =
+            "⏳ Spinning...";
+
+        showSpinMessage(
+            "Good luck! 🎉",
+            true
+        );
+
+
+        const { data, error } =
+            await supabaseClient.rpc(
+                "spin_wheel"
+            );
+
+
+        if (error) {
+
+            console.error(
+                "Spin error:",
+                error
+            );
+
+            showSpinMessage(
+                "Unable to spin. Please try again."
+            );
+
+            button.disabled = false;
+
+            button.textContent =
+                "🎡 SPIN NOW";
+
+            return;
+        }
+
+
+        if (!data) {
+
+            showSpinMessage(
+                "No response from server."
+            );
+
+            button.disabled = false;
+
+            button.textContent =
+                "🎡 SPIN NOW";
+
+            return;
+        }
+
+
+        if (!data.success) {
+
+            showSpinMessage(
+                data.message
+            );
+
+            if (
+                data.message ===
+                "Free spin already used today"
+            ) {
+
+                button.disabled = true;
+
+                button.textContent =
+                    "✅ Spin Already Used";
+
+            } else {
+
+                button.disabled = false;
+
+                button.textContent =
+                    "🎡 SPIN NOW";
+            }
+
+            return;
+        }
+
+
+        const reward =
+            Number(data.reward);
+
+
+        const rewardIndex = {
+            5: 0,
+            10: 1,
+            15: 2,
+            20: 3,
+            25: 4,
+            50: 5
+        }[reward];
+
+
+        const segmentCenter =
+            rewardIndex * 60 + 30;
+
+
+        const targetRotation =
+            360 * 6 +
+            (360 - segmentCenter);
+
+
+        wheelRotation +=
+            targetRotation;
+
+
+        wheel.style.transform =
+            "rotate(" +
+            wheelRotation +
+            "deg)";
+
+
+        setTimeout(function() {
+
+            document.getElementById(
+                "coins"
+            ).textContent =
+                data.coins;
+
+            showSpinMessage(
+                "🎉 You won " +
+                reward +
+                " coins!",
+                true
+            );
+
+            button.disabled = true;
+
+            button.textContent =
+                "✅ Spin Already Used";
+
+        }, 4200);
     }
 
 
@@ -458,7 +939,9 @@
             .getElementById("userSection")
             .classList.remove("hidden");
 
-        document.getElementById("userEmail").textContent =
+        document.getElementById(
+            "userEmail"
+        ).textContent =
             user.email || "";
     }
 
@@ -481,11 +964,17 @@
 
         showLogin();
 
-        document.getElementById("coins").textContent = "0";
+        document.getElementById(
+            "coins"
+        ).textContent = "0";
 
-        document.getElementById("userEmail").textContent = "";
+        document.getElementById(
+            "userEmail"
+        ).textContent = "";
 
         showRewardMessage("");
+
+        showSpinMessage("");
     }
 
 
@@ -493,9 +982,13 @@
 
         const {
             data: { session }
-        } = await supabaseClient.auth.getSession();
+        } =
+            await supabaseClient.auth.getSession();
 
-        if (session && session.user) {
+        if (
+            session &&
+            session.user
+        ) {
 
             showUser(session.user);
 
@@ -511,7 +1004,10 @@
     supabaseClient.auth.onAuthStateChange(
         async (event, session) => {
 
-            if (session && session.user) {
+            if (
+                session &&
+                session.user
+            ) {
 
                 showUser(session.user);
 
